@@ -1,0 +1,113 @@
+<head>
+  <title>Band&Tag</title>
+</head>
+
+<body>
+  
+   <div align="center"> 
+    <span style="float:right">{{loginButtons}}</span>
+    {{> loginDetails}}
+    {{#if currentUser}}
+    
+    <table align="center" width="75%">
+
+      <tr><td>{{> new_band}}</td></tr>
+      <tr><td>{{> bandList}}</td></tr>
+    </table>
+    {{/if}}
+  <div>
+  <div>
+  
+</body>
+
+<template name="loginDetails">
+  <h1>{{tagline}} </h1>
+  
+  <!-- Google Login -->
+    <span id="signinButton">
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="1004003011586-pfjjus71ted5rm0ascui9ptpa666rec8.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.login">
+  </span>
+</span>
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+    
+<script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+    </script>
+</template>
+
+<!-- Lists the select band and the options to tag, check that you have seen them-->
+<template name="bandList">
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">\m/ {{selected_name}} \m/ </div><input id="new_tag_name" type="text" value="" placeholder="add tag name" maxlength="20"/> 
+    <input type="button" class="add" value="Add Tag"/>   
+    {{#if selected_seen}}
+      <span class ="seen">[You have already seen this band] </span>
+    {{else}}
+      <input type="button" class="inc" value="I've seen them live!" />
+    {{/if}}
+    
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="details">Click a band to select</div>
+  {{/unless}}
+  <!-- Two search fields, by tag or by band and the list of all bands 
+  matching search criteria-->
+  <div class="bandList" >
+    <input id="searchedTag" class="search" type="text" value="{{search_query}}" placeholder="search by tag"/>
+    <input id="searchedBand" class="searchB" type="text" value="{{search_band}}" placeholder="search by band"/>
+      {{#each bands}}
+        {{> band}}
+      {{/each}}
+  </div>
+ 
+
+  
+</template>
+<!-- displays each individual band and is the platform for selecting a band-->
+<template name="band">
+  <div class="band {{selected}}">
+    <table>
+      <tr>
+        <td width="75%">
+      <span class="name" align="left">{{name}}</span>
+             
+              
+        </td>
+        <td width="25"><span class="score" align="left">{{score}}</span></tr>
+        <tr><td col-width="2" width="100%"><span class="tags" align="right">Tags:{{tags}}</span>
+        </td></tr>{{#if selected}}
+        <tr>  <td width="25">
+          <input type="button" class="show" value="show/hide users"/>
+          <span class="usersdiv" style="display:none" align="left">{{users}}</span>
+        </td>
+        </tr>
+        {{/if}}
+    </table>
+
+  </div>
+</template>
+
+<!-- add new band form -->
+<template name="new_band">
+  <div class="new_band">
+  <input id="new_band_name" type="text" value="" placeholder="Enter a new band name"/>
+  <input type="button" class="add" value="Add Band"/>
+  
+ 
+  </div>
+</template>
+
+

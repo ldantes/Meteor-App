@@ -1,0 +1,62 @@
+table {border-collapse:collapse; table-layout:fixed;}
+td {word-wrap:break-word;}
+
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    margin: 50px 0;
+    padding: 0;
+
+}
+
+.band {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.seen {
+    display: inline-block;
+    font-size: 0.50em;
+}
+
+.band .name {
+    display: inline-block;
+    width: 50%;
+    font-size: 1.75em;
+}
+
+.band .score {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-size: 2em;
+    font-weight: bold;
+    color: #777;
+}
+
+.band.selected {
+    background-color: rgb(40,200,40);
+}
+
+.band.selected .score {
+    color: rgb(200,50,50);
+}
+
+.details, .none {
+    font-weight: bold;
+    font-size: 2em;
+    border-style: dashed none dashed none;
+    border-color: #cfc;
+    border-width: 4px;
+    margin: 10px 10px;
+    padding: 5px 0px;
+}
+
+.none {
+    color: #777;
+}
+
+.inc {
+  cursor: pointer;
+}
